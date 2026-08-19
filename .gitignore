@@ -1,0 +1,18 @@
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual Environments
+venv/
+env/
+
+# Database & Local Storage (CRITICAL TO IGNORE)
+chroma_data/
+project_assets/
+
+# Temporary Files created during API uploads
+temp_*
+
+# Environment Variables
+.env
