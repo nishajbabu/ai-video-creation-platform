@@ -75,32 +75,3 @@ class AssetManager:
                     "url": os.path.join(root, file)
                 })
         return assets
-
-# --- MODULE EXECUTION ---
-if __name__ == "__main__":
-    test_project_id = "proj_test_001"
-    
-    # Let's create a dummy image file to simulate a user upload
-    dummy_image = "dummy_logo.jpg"
-    with open(dummy_image, "w") as f:
-        f.write("fake image data")
-
-    try:
-        print("Initializing Asset Manager...")
-        asset_db = AssetManager()
-        
-        print("\nSimulating user uploading a company logo...")
-        uploaded_asset = asset_db.save_asset(
-            project_id=test_project_id, 
-            source_file_path=dummy_image, 
-            asset_type="images"
-        )
-        
-        print("\nRetrieving all assets for the Video Editor timeline...")
-        all_assets = asset_db.list_project_assets(project_id=test_project_id)
-        
-        for asset in all_assets:
-            print(f"- Found {asset['type']}: {asset['url']}")
-            
-    except Exception as e:
-        print(f"Error during execution: {e}")

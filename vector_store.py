@@ -65,29 +65,3 @@ class VectorStoreManager:
         if results and "documents" in results and results["documents"]:
             return results["documents"][0]
         return []
-
-# --- MODULE EXECUTION ---
-if __name__ == "__main__":
-    from document_processor import extract_text_from_pdf, chunk_text
-    
-    test_pdf = "sample.pdf"
-    test_project_id = "proj_test_001"
-    
-    try:
-        db_manager = VectorStoreManager()
-        
-        # 1. Insert Data (If it's already there, ChromaDB handles it safely)
-        raw_text = extract_text_from_pdf(test_pdf)
-        text_chunks = chunk_text(raw_text, chunk_size=800, overlap=150)
-        db_manager.insert_chunks(project_id=test_project_id, document_name=test_pdf, chunks=text_chunks)
-        
-        # 2. Test the Search Engine
-        search_query = "What does DeepFER stand for?"
-        found_chunks = db_manager.search_chunks(project_id=test_project_id, query=search_query, top_k=1)
-        
-        print("\n--- SEARCH RESULTS ---")
-        for idx, chunk in enumerate(found_chunks):
-            print(f"Result {idx + 1}:\n{chunk}")
-            
-    except Exception as e:
-        print(f"Error during execution: {e}")

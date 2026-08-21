@@ -62,24 +62,3 @@ def chunk_text(text: str, chunk_size: int = 1000, overlap: int = 200) -> List[st
         start += (chunk_size - overlap)
 
     return chunks
-
-# --- MODULE EXECUTION ---
-if __name__ == "__main__":
-    test_pdf = "sample.pdf"
-    
-    try:
-        print(f"Processing '{test_pdf}'...")
-        raw_text = extract_text_from_pdf(test_pdf)
-        
-        print("Chunking text...")
-        text_chunks = chunk_text(raw_text, chunk_size=800, overlap=150)
-        
-        print(f"Successfully generated {len(text_chunks)} chunks.")
-        
-        # Display the first chunk as a validation check
-        if text_chunks:
-            print("\n--- CHUNK 1 PREVIEW ---")
-            print(text_chunks[0])
-            
-    except Exception as error:
-        print(f"Error during execution: {error}")
