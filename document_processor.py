@@ -4,61 +4,59 @@ from typing import List
 
 def extract_text_from_pdf(pdf_path: str) -> str:
     """
-    Extracts raw text from a given PDF file.
+    Parses a PDF document and extracts all readable text into a unified string.
     
     Args:
-        pdf_path (str): The absolute or relative path to the PDF file.
+        pdf_path (str): The absolute or relative file path to the target PDF.
         
     Returns:
-        str: The extracted text as a single string.
+        str: The complete extracted text payload.
         
     Raises:
-        FileNotFoundError: If the specified PDF file does not exist.
-        RuntimeError: If the PDF reading process fails.
+        FileNotFoundError: If the provided path does not resolve to a file.
+        RuntimeError: If the binary reading process encounters a structural failure.
     """
     if not os.path.exists(pdf_path):
-        raise FileNotFoundError(f"File not found at path: {pdf_path}")
+        raise FileNotFoundError(f"Missing resource at path: {pdf_path}")
 
     extracted_text = []
     
     try:
-        with open(pdf_path, 'rb') as file:
-            reader = PyPDF2.PdfReader(file)
-            for page in reader.pages:
-                text = page.extract_text()
-                if text:
-                    extracted_text.append(text)
+        with open(pdf_path, 'rb') as file_stream:
+            pdf_reader = PyPDF2.PdfReader(file_stream)
+            for page in pdf_reader.pages:
+                text_content = page.extract_text()
+                if text_content:
+                    extracted_text.append(text_content)
                     
         return "\n".join(extracted_text).strip()
         
-    except Exception as e:
-        raise RuntimeError(f"Failed to process PDF: {str(e)}")
-
+    except Exception as execution_error:
+        raise RuntimeError(f"PDF extraction failed: {str(execution_error)}")
 
 def chunk_text(text: str, chunk_size: int = 1000, overlap: int = 200) -> List[str]:
     """
-    Splits a large text string into smaller, overlapping chunks for vector embedding.
+    Implements a sliding-window algorithm to segment large text payloads 
+    into overlapping contextual chunks for vector embedding.
     
     Args:
-        text (str): The full text to be chunked.
-        chunk_size (int): The maximum character length of each chunk.
-        overlap (int): The number of characters to overlap between chunks to preserve context.
+        text (str): The continuous text payload to be segmented.
+        chunk_size (int): The maximum character boundary per chunk.
+        overlap (int): The character overlap margin to prevent context loss.
         
     Returns:
-        List[str]: A list of text chunks.
+        List[str]: A sequence of text segments ready for vectorization.
     """
     if not text:
         return []
 
-    chunks = []
-    start = 0
-    text_length = len(text)
+    text_chunks = []
+    current_index = 0
+    total_length = len(text)
 
-    while start < text_length:
-        end = start + chunk_size
-        chunk = text[start:end]
-        chunks.append(chunk)
-        # Move the start forward, subtracting the overlap to keep context tied together
-        start += (chunk_size - overlap)
+    while current_index < total_length:
+        boundary = current_index + chunk_size
+        text_chunks.append(text[current_index:boundary])
+        current_index += (chunk_size - overlap)
 
-    return chunks
+    return text_chunks
