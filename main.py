@@ -4,14 +4,15 @@ from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from pydantic import BaseModel
 from typing import List
 
-from document_processor import extract_text_from_pdf, chunk_text
+# Import updated document processor function
+from document_processor import extract_text_from_document, chunk_text
 from vector_store import VectorStoreManager
 from asset_manager import AssetManager
 
 app = FastAPI(
     title="Documents & Asset Management API",
-    description="Microservice handling PDF ingestion, vector search (RAG), and localized media storage.",
-    version="1.0.0"
+    description="Microservice handling PDF/DOCX ingestion, vector search (RAG), and localized media storage.",
+    version="1.1.0"
 )
 
 vector_db = VectorStoreManager()
@@ -34,18 +35,20 @@ def health_check():
 @app.post("/api/v1/projects/{project_id}/documents")
 async def upload_document(project_id: str, file: UploadFile = File(...)):
     """
-    Ingests a PDF stream, processes the binary into vectorized text chunks, 
+    Ingests a PDF or DOCX stream, processes the binary into vectorized text chunks, 
     and persists them within the designated project namespace.
     """
-    if not file.filename.endswith('.pdf'):
-        raise HTTPException(status_code=400, detail="MIME type mismatch: Expected application/pdf.")
+    valid_extensions = ('.pdf', '.docx')
+    if not file.filename.lower().endswith(valid_extensions):
+        raise HTTPException(status_code=400, detail=f"MIME type mismatch: Expected one of {valid_extensions}.")
 
     temp_path = f"temp_{file.filename}"
     try:
         with open(temp_path, "wb") as buffer_stream:
             shutil.copyfileobj(file.file, buffer_stream)
 
-        extracted_raw_text = extract_text_from_pdf(temp_path)
+        # Call the newly updated extraction logic
+        extracted_raw_text = extract_text_from_document(temp_path)
         context_chunks = chunk_text(extracted_raw_text, chunk_size=800, overlap=150)
         vector_db.insert_chunks(project_id=project_id, document_name=file.filename, chunks=context_chunks)
 
