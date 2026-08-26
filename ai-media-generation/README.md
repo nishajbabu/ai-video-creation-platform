@@ -980,5 +980,3 @@ The service is designed to integrate with the upstream Agentic Backend and provi
 **AI Media Generation Module — Working**
 
 **Automated Tests: 27 passed**
-#   a i - m e d i a - g e n e r a t i o n  
- 
