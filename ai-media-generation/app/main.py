@@ -23,6 +23,12 @@ app.mount(
     name="media",
 )
 
+app.mount(
+    "/frontend",
+    StaticFiles(directory="frontend", html=True),
+    name="frontend",
+)
+
 
 @app.get("/health")
 def health_check():

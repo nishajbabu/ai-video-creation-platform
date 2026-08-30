@@ -601,6 +601,20 @@ The application will normally be available at:
 http://127.0.0.1:8000
 ```
 
+Start the Streamlit studio in a second terminal:
+
+```powershell
+streamlit run streamlit_app.py
+```
+
+The studio will normally be available at:
+
+```text
+http://localhost:8501
+```
+
+Keep the FastAPI server running because the Streamlit studio sends generation requests to it.
+
 FastAPI documentation:
 
 ```text
