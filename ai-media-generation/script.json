@@ -1,0 +1,21 @@
+{
+    "title": "Healthy Farming",
+    "scenes": [
+        {
+            "scene_id": 1,
+            "narration": "Farmers prepare the soil carefully before planting their crops.",
+            "visual_prompt": "A realistic farmer preparing rich soil in a green agricultural field during early morning, cinematic realistic lighting."
+        },
+        {
+            "scene_id": 2,
+            "narration": "They carefully plant healthy seeds in rows across the field.",
+            "visual_prompt": "A realistic farmer planting seeds in neat rows across a green agricultural field, warm sunlight and natural environment."
+        },
+        {
+            "scene_id": 3,
+            "narration": "With proper care, the crops begin to grow strong and healthy.",
+            "visual_prompt": "A beautiful realistic agricultural field with healthy green crops growing under warm sunrise light, cinematic camera view."
+        }
+    ],
+    "voice_id": "en-US-AndrewNeural"
+}
