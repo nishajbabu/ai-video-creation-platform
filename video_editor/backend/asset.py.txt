@@ -1,0 +1,69 @@
+asset.py
+from sqlalchemy import Column, Integer, String, ForeignKey
+from app.database import Base
+
+
+class Asset(Base):
+    __tablename__ = "assets"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    scene_id = Column(
+        Integer,
+        ForeignKey("scenes.id"),
+        nullable=False
+    )
+
+    asset_type = Column(String, nullable=False)
+    file_url = Column(String, nullable=False)
+
+
+scene.py
+from sqlalchemy import Column, Integer, Float, String, ForeignKey
+from app.database import Base
+
+
+class Scene(Base):
+    __tablename__ = "scenes"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    video_id = Column(
+        Integer,
+        ForeignKey("videos.id"),
+        nullable=False
+    )
+
+    order = Column(Integer, nullable=False)
+    duration = Column(Float, default=5.0)
+    title = Column(String, nullable=True)
+
+timeline.py
+from sqlalchemy import Column, Integer, Float, String, Text, ForeignKey
+from app.database import Base
+
+
+class Timeline(Base):
+    __tablename__ = "timeline"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    video_id = Column(
+        Integer,
+        ForeignKey("videos.id"),
+        nullable=False
+    )
+
+    scene_id = Column(
+        Integer,
+        ForeignKey("scenes.id"),
+        nullable=False
+    )
+
+    start_time = Column(Float, nullable=False)
+    end_time = Column(Float, nullable=False)
+
+    transition = Column(String, nullable=True)
+
+    text_overlay = Column(Text, nullable=True)
+

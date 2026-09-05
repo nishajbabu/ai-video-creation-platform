@@ -32,184 +32,184 @@ st.set_page_config(
 # CUSTOM STYLING
 # ============================================================
 
-st.markdown(
-    """
-    <style>
+# st.markdown(
+#     """
+#     <style>
 
-    @import url(
-        'https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&display=swap'
-    );
+#     @import url(
+#         'https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&display=swap'
+#     );
 
-    :root {
-        --ink: #172322;
-        --muted: #71817c;
-        --line: #d7e0da;
-        --paper: #f4f6f1;
-        --coral: #e7674b;
-        --teal: #1d7168;
-        --card: #fffef9;
-        --soft: #eef3ee;
-        --warning: #fff6dc;
-    }
+#     :root {
+#         --ink: #172322;
+#         --muted: #71817c;
+#         --line: #d7e0da;
+#         --paper: #f4f6f1;
+#         --coral: #e7674b;
+#         --teal: #1d7168;
+#         --card: #fffef9;
+#         --soft: #eef3ee;
+#         --warning: #fff6dc;
+#     }
 
-    .stApp {
-        color: var(--ink);
-        background: var(--paper);
-    }
+#     .stApp {
+#         color: var(--ink);
+#         background: var(--paper);
+#     }
 
-    [data-testid="stHeader"] {
-        background: transparent;
-    }
+#     [data-testid="stHeader"] {
+#         background: transparent;
+#     }
 
-    [data-testid="stSidebar"] {
-        background: #e8eee7;
-        border-right: 1px solid var(--line);
-    }
+#     [data-testid="stSidebar"] {
+#         background: #e8eee7;
+#         border-right: 1px solid var(--line);
+#     }
 
-    .block-container {
-        max-width: 1320px;
-        padding-top: 2.8rem;
-        padding-bottom: 5rem;
-    }
+#     .block-container {
+#         max-width: 1320px;
+#         padding-top: 2.8rem;
+#         padding-bottom: 5rem;
+#     }
 
-    h1,
-    h2,
-    h3,
-    h4 {
-        font-family: Manrope, sans-serif;
-        letter-spacing: -1px;
-    }
+#     h1,
+#     h2,
+#     h3,
+#     h4 {
+#         font-family: Manrope, sans-serif;
+#         letter-spacing: -1px;
+#     }
 
-    h1 {
-        font-size: clamp(2.8rem, 6vw, 5.2rem) !important;
-        line-height: 0.98 !important;
-    }
+#     h1 {
+#         font-size: clamp(2.8rem, 6vw, 5.2rem) !important;
+#         line-height: 0.98 !important;
+#     }
 
-    h1 em {
-        color: var(--teal);
-        font-family: Georgia, serif;
-        font-weight: 400;
-    }
+#     h1 em {
+#         color: var(--teal);
+#         font-family: Georgia, serif;
+#         font-weight: 400;
+#     }
 
-    p,
-    label,
-    .stMarkdown {
-        font-family: Manrope, sans-serif;
-    }
+#     p,
+#     label,
+#     .stMarkdown {
+#         font-family: Manrope, sans-serif;
+#     }
 
-    .eyebrow {
-        color: var(--coral);
-        font: 500 10px 'DM Mono', monospace;
-        letter-spacing: 1.4px;
-        text-transform: uppercase;
-    }
+#     .eyebrow {
+#         color: var(--coral);
+#         font: 500 10px 'DM Mono', monospace;
+#         letter-spacing: 1.4px;
+#         text-transform: uppercase;
+#     }
 
-    .lede {
-        max-width: 620px;
-        color: var(--muted);
-        font-size: 1rem;
-        line-height: 1.7;
-    }
+#     .lede {
+#         max-width: 620px;
+#         color: var(--muted);
+#         font-size: 1rem;
+#         line-height: 1.7;
+#     }
 
-    .result-card {
-        height: 100%;
-        padding: 0.9rem;
-        border: 1px solid var(--line);
-        background: var(--card);
-    }
+#     .result-card {
+#         height: 100%;
+#         padding: 0.9rem;
+#         border: 1px solid var(--line);
+#         background: var(--card);
+#     }
 
-    .final-video-card {
-        padding: 1.5rem;
-        border: 1px solid var(--line);
-        background: var(--card);
-        margin-bottom: 2rem;
-    }
+#     .final-video-card {
+#         padding: 1.5rem;
+#         border: 1px solid var(--line);
+#         background: var(--card);
+#         margin-bottom: 2rem;
+#     }
 
-    .editor-heading {
-        color: var(--teal);
-        font-family: Manrope, sans-serif;
-        font-weight: 700;
-        font-size: 1.25rem;
-        margin-bottom: 0.2rem;
-    }
+#     .editor-heading {
+#         color: var(--teal);
+#         font-family: Manrope, sans-serif;
+#         font-weight: 700;
+#         font-size: 1.25rem;
+#         margin-bottom: 0.2rem;
+#     }
 
-    .timeline-track {
-        display: flex;
-        gap: 10px;
-        width: 100%;
-        overflow-x: auto;
-        padding: 12px 0 18px;
-    }
+#     .timeline-track {
+#         display: flex;
+#         gap: 10px;
+#         width: 100%;
+#         overflow-x: auto;
+#         padding: 12px 0 18px;
+#     }
 
-    .timeline-item {
-        min-width: 175px;
-        padding: 14px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: var(--soft);
-    }
+#     .timeline-item {
+#         min-width: 175px;
+#         padding: 14px;
+#         border: 1px solid var(--line);
+#         border-radius: 8px;
+#         background: var(--soft);
+#     }
 
-    .timeline-item strong {
-        display: block;
-        color: var(--teal);
-        margin-bottom: 7px;
-        font-family: Manrope, sans-serif;
-    }
+#     .timeline-item strong {
+#         display: block;
+#         color: var(--teal);
+#         margin-bottom: 7px;
+#         font-family: Manrope, sans-serif;
+#     }
 
-    .timeline-item small {
-        color: var(--muted);
-        font-family: 'DM Mono', monospace;
-    }
+#     .timeline-item small {
+#         color: var(--muted);
+#         font-family: 'DM Mono', monospace;
+#     }
 
-    .status-pill {
-        display: inline-block;
-        padding: 5px 10px;
-        border-radius: 20px;
-        background: #e8eee7;
-        color: var(--teal);
-        font-size: 12px;
-        font-family: 'DM Mono', monospace;
-    }
+#     .status-pill {
+#         display: inline-block;
+#         padding: 5px 10px;
+#         border-radius: 20px;
+#         background: #e8eee7;
+#         color: var(--teal);
+#         font-size: 12px;
+#         font-family: 'DM Mono', monospace;
+#     }
 
-    .editor-info {
-        padding: 10px 14px;
-        border: 1px solid var(--line);
-        background: #f9fbf7;
-        border-radius: 8px;
-        margin: 8px 0 14px;
-    }
+#     .editor-info {
+#         padding: 10px 14px;
+#         border: 1px solid var(--line);
+#         background: #f9fbf7;
+#         border-radius: 8px;
+#         margin: 8px 0 14px;
+#     }
 
-    .editor-warning {
-        padding: 10px 14px;
-        border: 1px solid #ead8a5;
-        background: var(--warning);
-        border-radius: 8px;
-        margin: 8px 0 14px;
-    }
+#     .editor-warning {
+#         padding: 10px 14px;
+#         border: 1px solid #ead8a5;
+#         background: var(--warning);
+#         border-radius: 8px;
+#         margin: 8px 0 14px;
+#     }
 
-    .scene-number {
-        color: var(--teal);
-        font-family: 'DM Mono', monospace;
-        font-size: 12px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
+#     .scene-number {
+#         color: var(--teal);
+#         font-family: 'DM Mono', monospace;
+#         font-size: 12px;
+#         letter-spacing: 1px;
+#         text-transform: uppercase;
+#     }
 
-    div.stButton > button[kind="primary"] {
-        background: var(--coral);
-        border: 0;
-        color: white;
-    }
+#     div.stButton > button[kind="primary"] {
+#         background: var(--coral);
+#         border: 0;
+#         color: white;
+#     }
 
-    div.stButton > button[kind="primary"]:hover {
-        background: var(--teal);
-        color: white;
-    }
+#     div.stButton > button[kind="primary"]:hover {
+#         background: var(--teal);
+#         color: white;
+#     }
 
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+#     </style>
+#     """,
+#     unsafe_allow_html=True,
+# )
 
 
 # ============================================================
@@ -1309,6 +1309,85 @@ project_id = st.text_input(
     value="my-first-film",
     key="project_id",
 )
+
+# ============================================================
+# AI PLANNING & RAG (INTEGRATION)
+# ============================================================
+
+st.markdown("## 01.5 AI Planning & Knowledge")
+st.caption("Upload supporting documents to ground the AI script in factual context.")
+
+col1, col2 = st.columns(2)
+with col1:
+    rag_api_url = st.text_input("RAG Backend URL", value="http://127.0.0.1:8000", help="Nishaj's Module")
+with col2:
+    planner_api_url = st.text_input("Planner Backend URL", value="http://127.0.0.1:8002", help="Ilavarasan's Module")
+
+video_prompt = st.text_area(
+    "What is this video about?", 
+    placeholder="e.g., Create a 60-second product introduction video for our AI chatbot"
+)
+uploaded_file = st.file_uploader("Upload reference document (PDF/DOCX)", type=["pdf", "docx"])
+
+if st.button("Generate Script with AI 🪄", use_container_width=True):
+    if not video_prompt.strip():
+        st.error("Please enter a video prompt.")
+    else:
+        with st.spinner("Processing document and generating AI script..."):
+            try:
+                rag_context = ""
+                
+                # 1. Hit Nishaj's RAG Module
+                if uploaded_file:
+                    files = {"file": (uploaded_file.name, uploaded_file.getvalue(), uploaded_file.type)}
+                    doc_resp = requests.post(f"{rag_api_url}/api/v1/projects/{project_id}/documents", files=files)
+                    doc_resp.raise_for_status()
+                    
+                    ret_resp = requests.post(f"{rag_api_url}/api/v1/projects/{project_id}/retrieve", json={"query": video_prompt, "top_k": 3})
+                    if ret_resp.ok:
+                        rag_context = " ".join(ret_resp.json().get("results", []))
+                
+               # 2. Hit Ilavarasan's AI Planner
+                combined_prompt = f"Video Request: {video_prompt}\n\nFactual Context from Document:\n{rag_context}"
+                
+                plan_resp = requests.post(
+                    f"{planner_api_url}/generation", 
+                    json={
+                        "prompt": combined_prompt,
+                        "duration": 60,
+                        "style": "Modern",
+                        "target_audience": "General",
+                        "tone": "Professional",
+                        "supporting_files": []
+                    }
+                )
+                plan_resp.raise_for_status()
+                
+                # 3. Populate Athim's UI automatically
+                plan_data = plan_resp.json()
+                st.write("Planner Response:", plan_data)
+                
+                generated_scenes = (
+                    plan_data.get("data", {}).get("storyboard", {}).get("scenes")
+                    or plan_data.get("data", {}).get("script", {}).get("scenes")
+                    or plan_data.get("scenes")
+                    or []
+                )
+                if generated_scenes:
+                    st.session_state.scenes = []
+                    for scene in generated_scenes:
+                        st.session_state.scenes.append({
+                            "narration": scene.get("narration", ""),
+                            "visual_prompt": scene.get("visual_prompt", ""),
+                            "voice": "Auto"
+                        })
+                    st.success("AI Script generated! Review the scenes below before generating media.")
+                    st.rerun()
+                else:
+                    st.warning("The Planner returned no scenes.")
+                    
+            except Exception as e:
+                st.error(f"Integration pipeline failed: {e}")
 
 
 # ============================================================
